@@ -5,6 +5,7 @@
   'use strict';
 
   const CHAVE = 'bsj365.codice.v1';
+  const FA = document.documentElement.dataset.fonteAcessivel || 'OpenDyslexic'; // fonte acessível disponível nesta hospedagem
   const ROTA_EMO = { historia: '📜', exausto: '🛌', injustica: '⚖️', metal: '🤘', jesus: '✝️', casal: '💍', rumo: '🧭', sabedoria: '🦉' };
   const main = document.getElementById('principal');
   let D = null, DIA = {}, SEM = {};
@@ -35,7 +36,11 @@
     t.textContent = msg; t.classList.add('on');
     clearTimeout(tToast); tToast = setTimeout(() => t.classList.remove('on'), 2400);
   }
-  const pdfSemana = n => `pdf/semana-${String(n).padStart(2, '0')}.pdf`;
+  // No GitHub Pages os PDFs ficam ao lado do app; em outra hospedagem, apontam para o GitHub Pages
+  const NO_PAGES = /github\.io$/.test(location.hostname) || location.hostname === 'localhost';
+  const PDF_BASE = NO_PAGES ? 'pdf/' : 'https://aldenirfilho.github.io/biblia-sem-jaula-365/pdf/';
+  const pdfSemana = n => `${PDF_BASE}semana-${String(n).padStart(2, '0')}.pdf`;
+  const PDF_VOLUME = `${PDF_BASE}Biblia-Sem-Jaula-365_Volume-Completo.pdf`;
   const dataLocal = ts => { const d = new Date(ts); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 
   function sequencias() {
@@ -83,7 +88,7 @@
       <div class="ajustes" role="group" aria-label="Ajustes de leitura">
         <button class="btn peq" data-acao="menor" aria-label="Diminuir letra">A−</button>
         <button class="btn peq" data-acao="maior" aria-label="Aumentar letra">A+</button>
-        <button class="btn peq" data-acao="fonte" aria-pressed="${E.fonte === 'dislexia'}">🔤 ${E.fonte === 'dislexia' ? 'OpenDyslexic' : 'Lora'}</button>
+        <button class="btn peq" data-acao="fonte" aria-pressed="${E.fonte === 'dislexia'}">🔤 ${E.fonte === 'dislexia' ? FA : 'Lora'}</button>
         <button class="btn peq" data-acao="tema">${E.tema === 'pergaminho' ? '🌙 Códice' : '☀️ Pergaminho'}</button>
       </div>
       <article class="codice folio" aria-labelledby="titulo-dia">
@@ -190,7 +195,7 @@
         <div class="stat"><b>${semAtual}</b><span>semana atual</span></div>
       </div>
       <div class="barra" aria-hidden="true"><i style="width:${(n / 365 * 100).toFixed(1)}%"></i></div>
-      <div class="acoes"><a class="btn ouro" href="#/dia/${E.atual}">📖 Continuar no Dia ${E.atual}</a><a class="btn" href="pdf/Biblia-Sem-Jaula-365_Volume-Completo.pdf" target="_blank" rel="noopener">📚 PDF completo (365 dias)</a></div>
+      <div class="acoes"><a class="btn ouro" href="#/dia/${E.atual}">📖 Continuar no Dia ${E.atual}</a><a class="btn" href="${PDF_VOLUME}" target="_blank" rel="noopener">📚 PDF completo (365 dias)</a></div>
       <hr class="filete">
       <div class="semanas">${D.semanas.map(s => {
         const k = feitosSemana(s.n), tot = s.d.length;
@@ -294,7 +299,7 @@
       <section class="codice bloco"><h2>⚙️ Preferências</h2>
         <div class="preferencias">
           <div class="pref"><span>🎨 Tema</span><div class="seg" role="group" aria-label="Tema"><button data-pref="tema" data-v="codice" aria-pressed="${E.tema === 'codice'}">🌙 Códice</button><button data-pref="tema" data-v="pergaminho" aria-pressed="${E.tema === 'pergaminho'}">☀️ Pergaminho</button></div></div>
-          <div class="pref"><span>🔤 Fonte de leitura</span><div class="seg" role="group" aria-label="Fonte"><button data-pref="fonte" data-v="lora" aria-pressed="${E.fonte === 'lora'}">Lora</button><button data-pref="fonte" data-v="dislexia" aria-pressed="${E.fonte === 'dislexia'}">OpenDyslexic</button></div></div>
+          <div class="pref"><span>🔤 Fonte de leitura</span><div class="seg" role="group" aria-label="Fonte"><button data-pref="fonte" data-v="lora" aria-pressed="${E.fonte === 'lora'}">Lora</button><button data-pref="fonte" data-v="dislexia" aria-pressed="${E.fonte === 'dislexia'}">${FA}</button></div></div>
           <div class="pref"><span>🔠 Tamanho da letra</span><div class="seg" role="group" aria-label="Tamanho"><button data-pref="tam" data-v="0.9" aria-pressed="${E.tam <= 0.95}">P</button><button data-pref="tam" data-v="1" aria-pressed="${E.tam > 0.95 && E.tam < 1.15}">M</button><button data-pref="tam" data-v="1.2" aria-pressed="${E.tam >= 1.15 && E.tam < 1.35}">G</button><button data-pref="tam" data-v="1.4" aria-pressed="${E.tam >= 1.35}">GG</button></div></div>
           <div class="pref"><span>🧭 Ir para o dia</span><form class="pular-dia" id="pular"><label class="sr" for="dia-n">Número do dia</label><input id="dia-n" type="number" min="1" max="365" inputmode="numeric" value="${E.atual}"><button class="btn peq" type="submit">Ir</button></form></div>
         </div></section>
@@ -309,7 +314,7 @@
       <section class="codice bloco"><h2>📲 Instalar como app</h2>
         <p class="aviso"><b>iPhone/iPad:</b> Safari → Compartilhar → <i>Adicionar à Tela de Início</i>. <b>Mac:</b> Safari → Arquivo → <i>Adicionar ao Dock</i>. <b>Android/Chrome:</b> menu ⋮ → <i>Instalar app</i>. Depois da primeira abertura, funciona sem internet.</p>
         ${instalar ? '<div class="acoes"><button class="btn ouro" id="instalar">📲 Instalar agora</button></div>' : ''}
-        <div class="acoes"><a class="btn" href="pdf/Biblia-Sem-Jaula-365_Volume-Completo.pdf" target="_blank" rel="noopener">📚 PDF completo (439 páginas)</a></div></section>`;
+        <div class="acoes"><a class="btn" href="${PDF_VOLUME}" target="_blank" rel="noopener">📚 PDF completo (439 páginas)</a></div></section>`;
     main.querySelectorAll('[data-pref]').forEach(b => b.addEventListener('click', () => { const p = b.dataset.pref; E[p] = p === 'tam' ? +b.dataset.v : b.dataset.v; salvar(); aplicarPrefs(); render(); }));
     document.getElementById('pular').addEventListener('submit', ev => { ev.preventDefault(); const v = Math.min(365, Math.max(1, parseInt(document.getElementById('dia-n').value, 10) || 1)); location.hash = '#/dia/' + v; });
     const pacote = () => JSON.stringify({ app: 'biblia-sem-jaula-365', versao: 1, exportado: new Date().toISOString(), estado: E });
@@ -362,7 +367,7 @@
     atualizarAnel(); render();
   }).catch(() => { main.innerHTML = '<div class="carregando"><p>⚠️ Não consegui abrir o códice. Verifique a conexão e recarregue a página.</p></div>'; });
 
-  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  if ('serviceWorker' in navigator && location.protocol === 'https:' && NO_PAGES) {
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
   }
 })();
