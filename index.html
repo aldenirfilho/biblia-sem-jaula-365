@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="codice">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bíblia Sem Jaula 365 · Códice de Estudo</title>
+<meta name="description" content="Plano bíblico de 365 dias: leitura completa (Almeida 1911), 3 conceitos, sabedoria e missão por dia. Progresso, notas e busca — funciona offline.">
+<meta name="author" content="ALDENIR ROCHA DE OLIVEIRA FILHO · PROJETO 360X">
+<meta name="theme-color" content="#0E1217">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sem Jaula 365">
+<meta property="og:title" content="Bíblia Sem Jaula 365 · Códice de Estudo">
+<meta property="og:description" content="Entrar na Bíblia sem desligar a inteligência. Um dia por vez: ler, pensar, agir.">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<a class="pular" href="#principal">Pular para o conteúdo</a>
+<div class="ceu" aria-hidden="true"></div>
+
+<header class="topo">
+  <a class="marca" href="#/hoje" aria-label="Bíblia Sem Jaula 365 — início">
+    <img src="assets/emblema.svg" alt="" width="44" height="50">
+    <span class="marca-txt"><b>BÍBLIA SEM JAULA</b><small>365 · CÓDICE DE ESTUDO</small></span>
+  </a>
+  <nav class="abas" aria-label="Seções">
+    <a href="#/hoje" data-aba="hoje"><span aria-hidden="true">📖</span> Hoje</a>
+    <a href="#/plano" data-aba="plano"><span aria-hidden="true">🗺️</span> Plano</a>
+    <a href="#/rotas" data-aba="rotas"><span aria-hidden="true">🧭</span> Rotas</a>
+    <a href="#/busca" data-aba="busca"><span aria-hidden="true">🔎</span> Busca</a>
+    <a href="#/caderno" data-aba="caderno"><span aria-hidden="true">✍️</span> Caderno</a>
+  </nav>
+  <a class="anel" href="#/caderno" aria-label="Progresso" id="anel">
+    <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19" class="anel-fundo"/><circle cx="22" cy="22" r="19" class="anel-frente" id="anel-arco"/></svg>
+    <span id="anel-txt">0</span>
+  </a>
+</header>
+
+<main id="principal" tabindex="-1">
+  <div class="carregando" id="carregando">
+    <img src="assets/emblema.svg" alt="" width="88" height="100">
+    <p>Abrindo o códice…</p>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="rodape-linha"></div>
+  <p class="autor">ALDENIR ROCHA DE OLIVEIRA FILHO · PROJETO 360X</p>
+  <p>📜 Texto bíblico: João Ferreira de Almeida, reimpressão de 1911 (domínio público), na grafia original — módulo <i>PorAlmeida1911</i> da CrossWire Bible Society.</p>
+  <p>💡 Conceitos, frases de sabedoria e missões são conteúdo editorial, não versículos.</p>
+  <p class="grato"><i>Grato desde já.</i> 🙏</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
