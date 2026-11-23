@@ -11,9 +11,18 @@
   let D = null, DIA = {}, SEM = {};
 
   /* ---------------- estado ---------------- */
-  const padrao = () => ({ atual: 1, feitos: {}, missoes: {}, notas: {}, marcas: {}, tema: 'codice', fonte: 'lora', tam: 1, criado: Date.now() });
+  // Padrão pedido em 23/11/2026: visualização clara (Pergaminho) e leitura em OpenDyslexic
+  const padrao = () => ({ atual: 1, feitos: {}, missoes: {}, notas: {}, marcas: {}, tema: 'pergaminho', fonte: 'dislexia', tam: 1, prefs2: 1, criado: Date.now() });
   let E = padrao();
-  try { const raw = localStorage.getItem(CHAVE); if (raw) E = Object.assign(padrao(), JSON.parse(raw)); } catch (e) { /* armazenamento indisponível */ }
+  try {
+    const raw = localStorage.getItem(CHAVE);
+    if (raw) {
+      const salvo = JSON.parse(raw);
+      E = Object.assign(padrao(), salvo);
+      // quem abriu antes de 23/11 passa uma vez para o claro + OpenDyslexic (depois pode trocar à vontade)
+      if (!salvo.prefs2) { E.tema = 'pergaminho'; E.fonte = 'dislexia'; E.prefs2 = 1; localStorage.setItem(CHAVE, JSON.stringify(E)); }
+    }
+  } catch (e) { /* armazenamento indisponível */ }
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(E)); } catch (e) { toast('⚠️ Não consegui salvar neste navegador'); } };
   const aplicarPrefs = () => {
     document.documentElement.dataset.tema = E.tema;

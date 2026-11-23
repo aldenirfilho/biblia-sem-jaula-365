@@ -118,6 +118,8 @@ main { max-width: 860px; margin: 0 auto; padding: 18px 14px 28px; outline: none;
 .texto { font-family: var(--leitura); font-size: calc(18px * var(--tam)); line-height: 1.75; color: var(--tinta); margin: 0; text-align: left; hyphens: auto; }
 [data-fonte="dislexia"] .texto { line-height: 1.8; font-size: calc(16.5px * var(--tam)); hyphens: manual; }
 [data-fonte="dislexia"] .conceito span, [data-fonte="dislexia"] .missao span { font-size: calc(14px * var(--tam)); }
+[data-fonte="dislexia"] .sabedoria q { font-family: var(--leitura); font-style: normal; font-weight: 400; font-size: calc(16.5px * var(--tam)); line-height: 1.6; }
+[data-fonte="dislexia"] .nota textarea, [data-fonte="dislexia"] .resultado p, [data-fonte="dislexia"] .nota-item p { font-size: calc(14.5px * var(--tam)); }
 .capitular { float: left; font: 700 calc(3.3em) / .82 Cinzel, serif; color: var(--ouro2); margin: 6px 8px 0 0; text-shadow: 0 0 18px rgba(233,196,106,.25); }
 .vs { cursor: pointer; border-radius: 4px; transition: background .2s; -webkit-tap-highlight-color: transparent; }
 .vs:hover { background: rgba(45,183,204,.08); }

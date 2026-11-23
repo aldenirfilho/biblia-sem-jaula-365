@@ -1,5 +1,5 @@
 /* Bíblia Sem Jaula 365 — service worker (offline). ALDENIR ROCHA DE OLIVEIRA FILHO · PROJETO 360X */
-const VERSAO = 'bsj365-v1-2026-11-23';
+const VERSAO = 'bsj365-v2-2026-11-23';
 const BASE = [
   './', 'index.html', 'assets/app.css', 'assets/app.js', 'assets/emblema.svg', 'data/estudo.json', 'manifest.webmanifest',
   'icons/favicon.svg', 'icons/favicon-32.png', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png',
