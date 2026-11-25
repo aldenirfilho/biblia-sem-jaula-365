@@ -145,12 +145,11 @@ def montar(entrada, repo):
     # sem o runtime do Claude: link de download comum (atributo download)
     h = troca(h, "'\">⬇️ Baixar</button>' : \"\")",
               "'\">⬇️ Baixar</button>' : '<a class=\"btn\" href=\"' + esc(a.url) + '\" download=\"' + esc(a.nome || \"\") + '\">⬇️ Baixar</a>')")
-    m = re.search(r'<button type="button" class="btn" id="nd-baixar" hidden>⬇️ Baixar o PDF</button>', h)
-    assert m, "botão nd-baixar não encontrado"
-    nd_pdf = re.search(r'<a class="btn btn--ouro" href="(pdfs/[^"]+)" target="_blank" rel="noopener">📖 Abrir o PDF</a>\s*' + re.escape(m.group(0)), h)
-    assert nd_pdf, "link do PDF da seção Neurodiversos não encontrado"
-    alvo = nd_pdf.group(1)
-    h = h.replace(m.group(0), f'<a class="btn" href="{alvo}" download="{os.path.basename(alvo)}">⬇️ Baixar o PDF</a>')
+    # botões "Baixar o PDF" das seções (dependiam do runtime do Claude): viram link comum
+    padrao = re.compile(r'(<a class="btn[^"]*" href="(pdfs/[^"]+)" target="_blank" rel="noopener">📖 Abrir o PDF</a>\s*)'
+                        r'<button type="button" class="btn" id="[a-z]+-baixar" hidden>⬇️ Baixar o PDF</button>')
+    h, n_botoes = padrao.subn(lambda m: m.group(1) + f'<a class="btn" href="{m.group(2)}" download="{os.path.basename(m.group(2))}">⬇️ Baixar o PDF</a>', h)
+    assert n_botoes >= 1 and '-baixar" hidden' not in h, f"botões de baixar convertidos: {n_botoes}"
     # rodapé: instalar o app
     k = h.rfind("</footer>")
     assert k > 0

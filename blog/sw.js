@@ -1,5 +1,5 @@
 /* Service worker · Mensagens que Importam · ALDENIR ROCHA DE OLIVEIRA FILHO · PROJETO 360X */
-const VERSAO = "mqi-5cfb79c85f";
+const VERSAO = "mqi-347c7cc0e0";
 const BASE = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSAO).then((c) => c.addAll(BASE)).then(() => self.skipWaiting()));
