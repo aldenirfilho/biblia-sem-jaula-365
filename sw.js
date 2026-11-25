@@ -6,7 +6,7 @@ const BASE = [
     "assets/fonts/cinzel-latin-400-normal.woff2",   "assets/fonts/cinzel-latin-700-normal.woff2",   "assets/fonts/cormorant-garamond-latin-600-italic.woff2",   "assets/fonts/cormorant-garamond-latin-600-normal.woff2",   "assets/fonts/cormorant-garamond-latin-700-normal.woff2",   "assets/fonts/lora-latin-400-italic.woff2",   "assets/fonts/lora-latin-400-normal.woff2",   "assets/fonts/lora-latin-500-normal.woff2",   "assets/fonts/lora-latin-700-normal.woff2",   "assets/fonts/opendyslexic-latin-400-normal.woff2",   "assets/fonts/opendyslexic-latin-700-normal.woff2",   "assets/fonts/poppins-latin-400-normal.woff2",   "assets/fonts/poppins-latin-500-normal.woff2",   "assets/fonts/poppins-latin-600-normal.woff2", 
 ];
 self.addEventListener('install', ev => { ev.waitUntil(caches.open(VERSAO).then(c => c.addAll(BASE)).then(() => self.skipWaiting())); });
-self.addEventListener('activate', ev => { ev.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSAO).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
+self.addEventListener('activate', ev => { ev.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('bsj365-') && k !== VERSAO).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', ev => {
   const req = ev.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;

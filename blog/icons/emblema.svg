@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Astrolábio dourado com a cruz ao centro">
+  <rect width="512" height="512" fill="#24272c"/>
+  <g transform="translate(256 256)">
+    <circle r="178" fill="#1c1e22" stroke="#d9b35f" stroke-width="12"/>
+    <circle r="150" fill="none" stroke="#d9b35f" stroke-width="22" stroke-dasharray="2.2 13.5" opacity=".8"/>
+    <circle r="128" fill="none" stroke="#d9b35f" stroke-width="3"/>
+    <ellipse rx="214" ry="72" fill="none" stroke="#8be0ee" stroke-width="5" stroke-dasharray="10 12" transform="rotate(-24)"/>
+    <circle cx="196" cy="-86" r="13" fill="#8be0ee"/>
+    <path d="M-15 -96 h30 l8 70 l70 -8 v30 l-70 -8 l-8 70 h-30 l-8 -70 l-70 8 v-30 l70 8 z" fill="#f5dc9a" stroke="#b98a30" stroke-width="4" stroke-linejoin="round"/>
+    <circle r="12" fill="#24272c" stroke="#b98a30" stroke-width="4"/>
+  </g>
+</svg>
