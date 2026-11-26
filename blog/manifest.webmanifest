@@ -1,7 +1,7 @@
 {
   "name": "Mensagens que Importam",
   "short_name": "Mensagens",
-  "description": "Blog e app de mensagens bíblicas e inter-religiosas: fólio do dia, diário de estudos, PDFs e a Bíblia Enxuta para Neurodiversos.",
+  "description": "Três tradições, uma ideia por dia: fólios com judaísmo, cristianismo e islã lado a lado, estudos com questões e gabarito, diário de mensagens, PDFs e a Bíblia Enxuta para Neurodiversos.",
   "lang": "pt-BR",
   "dir": "ltr",
   "start_url": "./",
@@ -31,6 +31,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Códice",
+      "url": "codice/"
+    },
+    {
+      "name": "Estudos",
+      "url": "estudos/"
+    },
+    {
+      "name": "Diário",
+      "url": "diario/"
     }
   ]
 }
