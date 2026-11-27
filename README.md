@@ -6,6 +6,8 @@
 
 🌐 **App:** https://aldenirfilho.github.io/biblia-sem-jaula-365/
 
+✠ **Blog:** [Mensagens que Importam](https://aldenirfilho.github.io/biblia-sem-jaula-365/blog/) reúne estudos bíblicos, leituras inter-religiosas, reflexões do Códice e uma biblioteca de PDFs. O blog também pode ser instalado como app. [Como atualizar o blog](blog/README.md).
+
 ## 🧩 O que tem
 
 | | |
@@ -41,6 +43,3 @@ icons/ · manifest.webmanifest · sw.js   app instalável e offline
 - **Fontes tipográficas:** Cinzel, Cormorant Garamond, Lora, Poppins e OpenDyslexic, todas sob SIL Open Font License 1.1 (licenças em `assets/fonts/`).
 
 *Grato desde já.* 🙏
-
-## ✠ Blog Mensagens que Importam
-O blog do projeto também roda aqui, como app instalável: **https://aldenirfilho.github.io/biblia-sem-jaula-365/blog/** (pasta `blog/`; como atualizar em `blog/README.md`).
